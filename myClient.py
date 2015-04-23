@@ -2,7 +2,7 @@
 import socket, SocketServer, threading, thread, time
 
 CLIENT_PORT = 4321
-SERVER_IP = '127.0.0.1'
+SERVER_IP = ' '
 SERVER_PORT = 1234
 
 user_list = {}
