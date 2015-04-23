@@ -49,8 +49,7 @@ def server_handler():
 
 		elif cli_str['type'] == 'getalluser':
 			for one_user in range(len(user_list)):
-				print 'sending IPtable...'
-				print 'getalluser#user_name:%s#cli_pub_ip:%s#cli_pub_port:%d#private_ip:%s#private_port:%s' % (user_list[one_user]['user_name'], user_list[one_user]['cli_pub_ip'], user_list[one_user]['cli_pub_port'], user_list[one_user]['private_ip'], user_list[one_user]['private_port']) 
+				print 'IP table: \nuser_name:%s#cli_pub_ip:%s#cli_pub_port:%d#private_ip:%s#private_port:%s' % (user_list[one_user]['user_name'], user_list[one_user]['cli_pub_ip'], user_list[one_user]['cli_pub_port'], user_list[one_user]['private_ip'], user_list[one_user]['private_port']) 
 				toclient = 'getalluser#user_name:%s#cli_pub_ip:%s#cli_pub_port:%d#private_ip:%s#private_port:%s' % (user_list[one_user]['user_name'], user_list[one_user]['cli_pub_ip'], user_list[one_user]['cli_pub_port'], user_list[one_user]['private_ip'], user_list[one_user]['private_port']) 
 				sock.sendto(toclient, cli_pub_addr)
 

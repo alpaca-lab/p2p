@@ -2,13 +2,14 @@
 import socket, SocketServer, threading, thread, time
 
 CLIENT_PORT = 4321
-SERVER_IP = ' '
+SERVER_IP = '127.0.0.1'
 SERVER_PORT = 1234
 
 user_list = {}
 
 local_ip = socket.gethostbyname(socket.gethostname())
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
 sock.bind(('', CLIENT_PORT))
 
 print 'local_ip:   ', local_ip
@@ -33,7 +34,7 @@ def server_handle():
 				arg = one_line.split(':')
 				user_list[user_name][arg[0]] = arg[1]
 			print 'user_list == ', user_list
-		elif data_type == 'echo':
+		elif data_type == 'type:echo':
 			print data_info
 		elif data_type == 'keepconnect':
 			msg = 'type:alive'
@@ -43,7 +44,7 @@ if __name__ == '__main__':
 	thread.start_new_thread(server_handle, ())
 	time.sleep(0.1)
 	to_user_name = ' ' 
-	to_user_ip = ' '
+	to_user_ip   = ' '
 	to_user_port = 0
 	cmd = raw_input('Input command(format:xxx#xxx): ')	#format: login#bao / getalluser	/ connect#bao / echo$fasdfadfas
 	while True:
